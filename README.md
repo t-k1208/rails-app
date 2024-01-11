@@ -1,11 +1,7 @@
-# ADD SOMETHING LATER...
+# tasktracker app
 
-add discription later!
-
-## Subheader
-
-add subheader.
-
-## Local Development
-
-1. Open index.html in your browser.
+tasktrackerフォルダをダウンロード
+tasktrackerディレクトリ下で以下のコマンドを実行
+```
+rails s
+```
