@@ -1,0 +1,13 @@
+<%= form_with(model: progress_datum, local: true) do |form| %>
+    <!-- 他のフォームフィールド -->
+  
+    <div class="field">
+      <%= form.label :comment %>
+      <%= form.text_area :comment %>
+    </div>
+  
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+  

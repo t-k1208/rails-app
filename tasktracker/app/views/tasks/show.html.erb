@@ -1,0 +1,41 @@
+<style>
+  .task-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  .task-table th.table-header {
+  background-color: #f0f8ff;
+  }
+  .task-table td {
+  text-align: center;
+  }
+</style>
+
+<p style="color: green"><%= notice %></p>
+
+<p>以下を削除しますか？</p>
+
+<table class="table task-table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th class="table-header">タスク名</th>
+      <th class="table-header">進捗度</th>
+      <th class="table-header">コメント</th>
+      <th class="table-header">日付</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @task.title %></td>
+      <td><%= @task.progress.nil? ? '0' : @task.progress %>%</td>
+      <td><%= @task.comment %></td>
+      <td><%= @task.date %></td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="display: flex;">
+  <%= button_to "削除", @task, method: :delete, class: "btn btn-outline-danger" %>
+  <%= link_to "戻る", :back, class: "btn btn-outline-dark" %>
+</div>

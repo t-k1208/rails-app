@@ -1,0 +1,80 @@
+<style>
+  .task-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  .task-table th.table-header {
+    background-color: #f0f8ff;
+  }
+  .task-table td {
+    text-align: left;
+  }
+</style>
+
+<%= form_with(model: @task, local: true) do |form| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% @task.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="table task-table table-bordered table-hover table-striped" style="width: 400px;">
+    <tr>
+      <th class="table-header bg-dark text-white">
+        タスク
+      </th>
+      <td>
+        <%= form.text_field :title, value: task.title %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="table-header bg-dark text-white">
+        進捗度
+      </th>
+      <td>
+        <%= form.number_field :progress, value: task.progress, min: 0, max: 100 %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="table-header bg-dark text-white">
+        コメント
+      </th>
+      <td>
+        <%= form.text_area :comment %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="table-header bg-dark text-white">
+        日付
+      </th>
+      <td>
+        <%= form.date_field :date, value: task.date %>
+      </td>
+    </tr>
+
+    <tr>
+      <th class="table-header bg-dark text-white">
+        user_id
+      </th>
+      <td>
+        <%= form.date_field :date, value: task.date %>
+      </td>
+      <%= current_user.id %>
+    </tr>
+
+    <tr>
+      <td colspan="2" class="actions">
+        <%= form.submit '更新', class: "btn btn-outline-success" %>
+        <%= link_to '戻る', :back, class: "btn btn-outline-dark" %>
+      </td>
+    </tr>
+  </table>
+<% end %>

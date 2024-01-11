@@ -1,0 +1,41 @@
+<style>
+  .task-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  .task-table th.table-header {
+  background-color: #f0f8ff;
+  }
+  .task-table td {
+  text-align: center;
+  }
+</style>
+
+<h1>タスク一覧</h1>
+
+<table class="table task-table table-bordered table-hover table-striped">
+  <thead>
+    <tr>
+      <th class="bg-dark text-white">タスク名</th>
+      <th class="bg-dark text-white">進捗度</th>
+      <th class="bg-dark text-white">コメント</th>
+      <th class="bg-dark text-white">日付</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td class="table-header"><%= task.title %></td>
+        <td class="table-header"><%= task.progress.nil? ? '0' : task.progress %> %</td>
+        <td class="table-header" style="max-width: 300px;"><%= simple_format(task.comment) %></td>
+        <td class="table-header"><%= task.date %></td>
+
+        <td><%= link_to '詳細', detail_task_path(task), class: "btn btn-outline-dark" %></td>
+        <td><%= link_to '編集', edit_task_path(task), class: "btn btn-outline-dark" %></td>
+        <td><%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'タスク追加', new_task_path, class: "btn btn-outline-primary" %>

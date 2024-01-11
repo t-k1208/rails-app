@@ -1,0 +1,46 @@
+<h1>タスク追加</h1>
+
+<%= form_with(model: @task, url: tasks_path) do |form| %>
+  <table class="table task-table table-bordered table-hover table-striped" style="width: 400px">
+    <tr>
+      <th class="table-header bg-dark text-white">
+        <%= form.label :title, 'タスク名' %>
+      </th>
+      <td>
+        <%= form.text_field :title %>
+      </td>
+    </tr>
+    <tr>
+      <th class="table-header bg-dark text-white">
+        <%= form.label :progress, '進捗度' %>
+      </th>
+      <td>
+        <%= form.number_field :progress, min: 0, max: 100 %>
+      </td>
+    </tr>
+    <tr>
+      <th class="table-header bg-dark text-white">
+        <%= form.label :comment, 'コメント' %>
+      </th>
+      <td>
+        <%= form.text_area :comment %>
+      </td>
+    </tr>
+    <tr>
+      <th class="table-header bg-dark text-white">
+        <%= form.label :date, '日付' %>
+      </th>
+      <td>
+        <%= form.date_field :date %>
+      </td>
+    </tr>
+
+    <%= form.number_field :user_id, id: :task_user_id, value: current_user.id,
+    type: :hidden %>
+
+  </table>
+  <div class="actions">
+    <%= form.submit "追加", class: "btn btn-outline-success" %>
+    <%= link_to '戻る', tasks_path, class: "btn btn-outline-dark" %>
+  </div>
+<% end %>
